@@ -20,7 +20,7 @@ public class Topic {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "created_date")
 	private LocalDateTime createdDate; //话题的创建时间
-	private String title;//话题的标题  user_id
+	private String title;//话题的标题
 	@Column(name = "user_id")
 	private Integer userId;//创建话题的用户的userId
 

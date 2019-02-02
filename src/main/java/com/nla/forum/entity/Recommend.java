@@ -9,7 +9,9 @@ public class Recommend {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "user_id")
     private Integer userId;
+    @Column(name = "topic_id")
     private Integer topicId;
     private Integer focus;//关注度
 

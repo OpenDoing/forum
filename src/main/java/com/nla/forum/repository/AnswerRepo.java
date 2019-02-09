@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface AnswerRepo extends JpaRepository<Answer,Integer> {
     Answer findAnswerById(Integer id);
+    List<Answer> findAnswersByTopicId(Integer id);
 
 }

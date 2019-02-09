@@ -37,6 +37,7 @@ public class TopicServiceImpl implements TopicService {
             topicVO.setCreatedDate(topic.getCreatedDate());
             topicVO.setTitle(topic.getTitle());
             topicVO.setUserId(topic.getUserId());
+            topicVO.setId(topic.getId());
             User user = userRepo.findUserById(topic.getUserId());
             int focus = 0;
             try{
@@ -61,6 +62,7 @@ public class TopicServiceImpl implements TopicService {
             topicVO.setCreatedDate(topic.getCreatedDate());
             topicVO.setTitle(topic.getTitle());
             topicVO.setUserId(topic.getUserId());
+            topicVO.setId(topic.getId());
             User user = userRepo.findUserById(topic.getUserId());
             int focus = 0;
             try{

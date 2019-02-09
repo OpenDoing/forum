@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 
 public class TopicVO {
-
+    private Integer id; //话题的topicId
     private String title;
     private String username;
     private String category;//话题所属的目录
@@ -13,6 +13,14 @@ public class TopicVO {
     private LocalDateTime createdDate; //话题的创建时间
     private Integer userId;//创建话题的用户的userId
     private Integer focus;  //话题关注度
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getFocus() {
         return focus;

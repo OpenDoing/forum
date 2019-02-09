@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface LikeRepo extends JpaRepository<LikeAnswer, Integer> {
-    LikeAnswer findLikeById(Integer id);
-    List<LikeAnswer> findAllByUserIdAndUseful(Integer userId, Integer useful);
+
+    LikeAnswer findLikeAnswerByIdAndUserId(Integer id, Integer userId);
+
+    List<LikeAnswer> findAllByIdAndUseful(Integer id, Integer useful);
 }

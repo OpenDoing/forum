@@ -47,5 +47,10 @@ public class TopicController {
         return topicService.getAllTopicByCategory(userId, category);
     }
 
+    @GetMapping("/get")
+    public Topic getOne(@RequestParam Integer topicId) {
+//        Topic topic =
+        return topicRepo.findTopicById(topicId);
+    }
 
 }

@@ -37,7 +37,7 @@ public class LikeController {
      */
     @PostMapping("/reverse")
     public Object add(@RequestBody LikeAnswer likeAnswer){
-        LikeAnswer result = likeRepo.findLikeById(likeAnswer.getId());
+        LikeAnswer result = likeRepo.findLikeAnswerByIdAndUserId(likeAnswer.getId(), likeAnswer.getUserId());
         if (result == null) {
             likeAnswer.setUseful(1);
             likeRepo.save(likeAnswer);
@@ -112,7 +112,7 @@ public class LikeController {
      */
     @GetMapping("/count")
     public Object getLike(@RequestParam Integer id) {
-        List<LikeAnswer> list = likeRepo.findAllByUserIdAndUseful(id, 1);
+        List<LikeAnswer> list = likeRepo.findAllByIdAndUseful(id, 1);
         return ResponseUtil.ok(list.size());
     }
 }

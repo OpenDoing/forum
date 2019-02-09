@@ -74,6 +74,12 @@ public class UserController {
         return ResponseUtil.ok();
     }
 
+    @GetMapping("/username")
+    public Object getUsername(@RequestParam Integer userId){
+        String username = userRepo.findUserById(userId).getUsername();
+        return ResponseUtil.ok(username);
+    }
+
     //更新token
     private User updateToken(User user) {
         LocalDateTime now = LocalDateTime.now();

@@ -4,9 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "likeanswer")
+@IdClass(PrimaryKey.class)
 public class LikeAnswer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "user_id")
     private Integer userId;

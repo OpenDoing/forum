@@ -1,5 +1,6 @@
 package com.nla.forum.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ public class Topic {
 	private String category;//话题所属的目录
 	private String code;//话题附加的代码
 	private String content;//话题的内容
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "created_date")
 	private LocalDateTime createdDate; //话题的创建时间
 	private String title;//话题的标题

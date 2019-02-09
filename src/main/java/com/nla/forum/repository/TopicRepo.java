@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface TopicRepo extends JpaRepository<Topic,Integer> {
     List<Topic> findAllByCategory(String category);
+    Topic findTopicById(Integer id);
 }

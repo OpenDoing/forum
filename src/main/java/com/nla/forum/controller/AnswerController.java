@@ -8,6 +8,7 @@ import com.nla.forum.repository.AnswerRepo;
 import com.nla.forum.repository.RankRepo;
 import com.nla.forum.repository.TopicRepo;
 import com.nla.forum.service.AnswerService;
+import com.nla.forum.util.JacksonUtil;
 import com.nla.forum.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -75,6 +76,28 @@ public class AnswerController {
     public List<AnswerVO> getAnswer(@RequestParam Integer topicId, @RequestParam Integer userId, @RequestParam String username) {
         return answerService.listAnswers(topicId,userId,username);
 
+    }
+
+    @GetMapping("/getanswer")
+    public Object getAnswer(@RequestParam Integer answerId) {
+        return ResponseUtil.ok(answerRepo.findAnswerById(answerId));
+    }
+
+    @GetMapping("/count")
+    public Object getAnswerCount(@RequestParam Integer userId) {
+        int count = answerRepo.findAnswersByUserId(userId).size();
+        return ResponseUtil.ok(count);
+    }
+
+    @PostMapping("/changeScore")
+    public Object changeScore(@RequestBody String body) {
+        String answerId = JacksonUtil.parseString(body, "answerId");
+        String score = JacksonUtil.parseString(body, "score");
+        Answer answer = new Answer();
+        answer.setId(Integer.parseInt(answerId));
+        answer.setScore(Integer.parseInt(score));
+        answerRepo.update(answer.getScore(), answer.getId());
+        return ResponseUtil.ok();
     }
 
 }

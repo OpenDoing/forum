@@ -1,8 +1,11 @@
 package com.nla.forum.controller;
+import com.nla.forum.entity.Profile;
 import com.nla.forum.entity.Rank;
 import com.nla.forum.entity.User;
+import com.nla.forum.repository.ProfileRepo;
 import com.nla.forum.repository.RankRepo;
 import com.nla.forum.repository.UserRepo;
+import com.nla.forum.service.ProfileService;
 import com.nla.forum.util.CharUtil;
 import com.nla.forum.util.JacksonUtil;
 import com.nla.forum.util.ResponseUtil;
@@ -24,6 +27,9 @@ public class UserController {
 
     @Autowired
     private RankRepo rankRepo;
+
+    @Autowired
+    private ProfileService profileService;
 
     @PostMapping("/login")
     public Object login(@RequestBody String body){
@@ -65,19 +71,31 @@ public class UserController {
         newUser.setToken(reg.getToken());
         newUser.setUpdatetime(reg.getUpdatetime());
         newUser.setExpiretime(reg.getExpiretime());
+
         //添加Rank表信息
         User urank = userRepo.save(newUser);
         Rank rank = new Rank();
         rank.setUserId(urank.getId());
         rank.setPoint(0);
         rankRepo.save(rank);
+
+        //添加Profile表信息
+        Profile profile = new Profile();
+        profile.setUserId(urank.getId());
+        profile.setAvatar("");
+        if (role.equals("0")){
+            profile.setAtype("学生");
+        }else {
+            profile.setAtype("老师");
+        }
+        profileService.insert(profile.getUserId(), profile.getAtype(), "default.png");
         return ResponseUtil.ok();
     }
 
-    @GetMapping("/username")
-    public Object getUsername(@RequestParam Integer userId){
-        String username = userRepo.findUserById(userId).getUsername();
-        return ResponseUtil.ok(username);
+    @GetMapping("/user")
+    public Object getUser(@RequestParam Integer userId){
+        User user = userRepo.findUserById(userId);
+        return ResponseUtil.ok(user);
     }
 
     //更新token
@@ -93,4 +111,6 @@ public class UserController {
         }
         return user;
     }
+
+
 }

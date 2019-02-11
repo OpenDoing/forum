@@ -53,4 +53,10 @@ public class TopicController {
         return topicRepo.findTopicById(topicId);
     }
 
+    @GetMapping("/create")
+    public Object createTopic(@RequestParam Integer userId) {
+        int count = topicRepo.findTopicsByUserId(userId).size();
+        return ResponseUtil.ok(count);
+    }
+
 }

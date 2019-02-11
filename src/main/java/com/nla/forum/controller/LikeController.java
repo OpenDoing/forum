@@ -115,4 +115,15 @@ public class LikeController {
         List<LikeAnswer> list = likeRepo.findAllByIdAndUseful(id, 1);
         return ResponseUtil.ok(list.size());
     }
+
+    /**
+     * 获取某用户收到有多少个赞
+     * @param userId
+     * @return
+     */
+    @GetMapping("/acount")
+    public Object getLikeCount(@RequestParam Integer userId) {
+        List<LikeAnswer> list = likeRepo.findLikeAnswersByUserIdAndUseful(userId, 1);
+        return ResponseUtil.ok(list.size());
+    }
 }

@@ -11,4 +11,6 @@ public interface LikeRepo extends JpaRepository<LikeAnswer, Integer> {
     LikeAnswer findLikeAnswerByIdAndUserId(Integer id, Integer userId);
 
     List<LikeAnswer> findAllByIdAndUseful(Integer id, Integer useful);
+
+    List<LikeAnswer> findLikeAnswersByUserIdAndUseful(Integer userId, Integer useful);
 }

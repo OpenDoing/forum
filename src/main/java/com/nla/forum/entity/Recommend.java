@@ -1,27 +1,23 @@
 package com.nla.forum.entity;
 
 
+import com.nla.forum.entity.combine.RecommandKey;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "recommend")
+@IdClass(RecommandKey.class)
 public class Recommend {
+
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     @Column(name = "user_id")
     private Integer userId;
+    @Id
     @Column(name = "topic_id")
     private Integer topicId;
     private Integer focus;//关注度
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getUserId() {
         return userId;
@@ -45,5 +41,14 @@ public class Recommend {
 
     public void setFocus(Integer focus) {
         this.focus = focus;
+    }
+
+    @Override
+    public String toString() {
+        return "Recommend{" +
+                ", userId=" + userId +
+                ", topicId=" + topicId +
+                ", focus=" + focus +
+                '}';
     }
 }

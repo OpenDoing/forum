@@ -59,4 +59,9 @@ public class TopicController {
         return ResponseUtil.ok(count);
     }
 
+    @PostMapping("/title")
+    public Object changeTitle(@RequestParam String title, @RequestParam Integer id) {
+        topicRepo.updateTitle(title, id);
+        return ResponseUtil.ok();
+    }
 }

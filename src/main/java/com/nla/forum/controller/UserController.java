@@ -71,6 +71,13 @@ public class UserController {
         newUser.setToken(reg.getToken());
         newUser.setUpdatetime(reg.getUpdatetime());
         newUser.setExpiretime(reg.getExpiretime());
+        //新注册的老师，需要审核，0为待审核
+        if (newUser.getRole().equals(1)){
+            newUser.setStatus(0);
+        }else {
+            newUser.setStatus(1);
+
+        }
 
         //添加Rank表信息
         User urank = userRepo.save(newUser);
@@ -112,5 +119,30 @@ public class UserController {
         return user;
     }
 
+    @GetMapping("/list")
+    private List<User> teachers(@RequestParam Integer role) {
+        List<User> list = userRepo.findUsersByRole(role);
+        return list;
+    }
 
+    @PostMapping("/check")
+    private Object usercheck(@RequestParam Integer userId) {
+
+        userRepo.updateStatus(1,userId);
+        return ResponseUtil.ok();
+    }
+
+    @DeleteMapping("/del")
+    private Object delUser(@RequestParam Integer userId) {
+
+        userRepo.deleteById(userId);
+        return ResponseUtil.ok();
+    }
+
+    @PostMapping("/fen")
+    private Object userFen(@RequestParam Integer userId, @RequestParam Integer status) {
+
+        userRepo.updateStatus(status,userId);
+        return ResponseUtil.ok();
+    }
 }

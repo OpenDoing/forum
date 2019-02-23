@@ -39,6 +39,7 @@ public class TopicServiceImpl implements TopicService {
             topicVO.setUserId(topic.getUserId());
             topicVO.setId(topic.getId());
             User user = userRepo.findUserById(topic.getUserId());
+            System.out.println(user.toString());
             int focus = 0;
             try{
                 focus = recommendRepo.findRecommendByUserIdAndTopicId(userId, topic.getId()).getFocus();

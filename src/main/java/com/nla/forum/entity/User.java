@@ -20,6 +20,16 @@ public class User {
     private LocalDateTime updatetime;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime expiretime;
+    //用户状态  0-未审核，1-正常，2-封号
+    private Integer status;
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public String getToken() {
         return token;
